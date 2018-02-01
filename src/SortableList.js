@@ -178,7 +178,7 @@ export default class SortableList extends Component {
     const containerStyle = StyleSheet.flatten([style, {opacity: Number(animated)}])
     const innerContainerStyle = [
       styles.rowsContainer,
-      horizontal ? {width: contentWidth} : {height: contentHeight},
+      // horizontal ? {width: contentWidth} : {height: contentHeight},
     ];
     let {refreshControl} = this.props;
 
@@ -191,6 +191,7 @@ export default class SortableList extends Component {
     return (
       <View style={containerStyle} ref={this._onRefContainer}>
         <ScrollView
+          style={{overflow: 'visible'}}
           refreshControl={refreshControl}
           ref={this._onRefScrollView}
           horizontal={horizontal}

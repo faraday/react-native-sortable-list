@@ -52,7 +52,8 @@ export default class Row extends Component {
       const vy = Math.abs(gestureState.vy)
       const vx = Math.abs(gestureState.vx)
 
-      return this._active && (this.props.horizontal ? vx > vy : vy > vx);
+      // return this._active && (this.props.horizontal ? vx > vy : vy > vx);
+      return this._active;
     },
 
     onShouldBlockNativeResponder: () => {
@@ -167,7 +168,7 @@ export default class Row extends Component {
     const {children, style, horizontal} = this.props;
     const rowStyle = [
       style, styles.container, this._animatedLocation.getLayout(),
-      horizontal ? styles.horizontalContainer : styles.verticalContainer,
+      // horizontal ? styles.horizontalContainer : styles.verticalContainer,
     ];
 
     return (
@@ -216,9 +217,11 @@ export default class Row extends Component {
   };
 
   _mapGestureToMove(prevGestureState, gestureState) {
-    return this.props.horizontal
+    console.log(gestureState);
+    /* return this.props.horizontal
       ? {dx: gestureState.moveX - prevGestureState.moveX}
-      : {dy: gestureState.moveY - prevGestureState.moveY};
+      : {dy: gestureState.moveY - prevGestureState.moveY}; */
+      return {dx: gestureState.moveX - prevGestureState.moveX, dy: gestureState.moveY - prevGestureState.moveY};
   }
 
   _isDisabled() {
